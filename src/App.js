@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import dateFormat from "dateformat";
 
 function App() {
   const [weather, setWeather] = useState([]);
@@ -31,6 +32,9 @@ function App() {
     fetchWeather();
   }, []);
 
+  const today = Date.now();
+  const currentDate = dateFormat(today, "dddd,  dS mmmm");
+
   return (
     <div className="App">
       {!loading ? (
@@ -48,8 +52,8 @@ function App() {
 
           <main>
             <section className="location">
-              <div className="city">{weather.name}, </div>
-              <div className="date">Tuesday 20 July</div>
+              <div className="city">{weather ? weather.name : null}, </div>
+              <div className="date">{currentDate}</div>
             </section>
 
             <div className="current">
